@@ -55,6 +55,8 @@ ak_doubleArray *variedPanelsCp(const ak_Allocator *allocator,
   return Cp_lists;
 }
 
+// TODO: Save the thetas too.
+// TODO: Format .dat file as: Theta Cp
 void saveVariedCpArray(ak_doubleArray *arr, const char *filename,
                        const size_t nmax) {
 
