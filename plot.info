@@ -1,0 +1,5 @@
+set title "Coeff. of Pressure Cylinder (Circulation = {π}{R}V_{inf})";
+set xlabel "Position [Degrees]";
+set ylabel "C_p";
+set grid;
+plot "data/tst.csv" with lines

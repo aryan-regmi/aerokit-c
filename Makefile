@@ -21,4 +21,6 @@ profile: default $(tests) $(exe)
 	@cd $(build_dir) && meson test -Db_sanitize=address
 	@valgrind --tool=memcheck --leak-check=full -s $(exe)
 	
+plot: test data/tst.csv plot.info
+	gnuplot plot.info --persist
 

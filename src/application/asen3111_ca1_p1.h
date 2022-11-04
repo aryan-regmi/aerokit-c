@@ -25,5 +25,5 @@ ak_doubleArray *variedPanelsCp(const ak_Allocator *allocator,
                                const size_t nmax);
 
 /// Saves array of Coefficent of Pressures into file.
-void saveVariedCpArray(ak_doubleArray *arr, const char *filename,
-                       const size_t nmax);
+void saveVariedCpArray(const ak_Allocator *allocator, ak_doubleArray *arr,
+                       const char *filename, const size_t nmax);

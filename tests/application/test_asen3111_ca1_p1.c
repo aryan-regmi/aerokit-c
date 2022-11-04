@@ -13,6 +13,16 @@ void canCalcCpWithVariedPanels(void) {
   TEST_CHECK(Cps != NULL);
 }
 
-TEST_LIST = {{"[APPLICATIOn] Can calculate Cp for varying number of panels",
+void canSaveVariedCpArray(void) {
+  const size_t NMAX = 100;
+
+  ak_doubleArray *Cps = variedPanelsCp(&GPA, NMAX);
+
+  saveVariedCpArray(&GPA, Cps,
+                    "/home/aryan/Documents/Dev/C/aerokit/data/tst.csv", NMAX);
+}
+
+TEST_LIST = {{"[APPLICATION] Can calculate Cp for varying number of panels",
               canCalcCpWithVariedPanels},
+             {"[APPLICATION] Can save Cp array", canSaveVariedCpArray},
              {NULL, NULL}};

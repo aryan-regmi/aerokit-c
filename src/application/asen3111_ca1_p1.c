@@ -8,7 +8,8 @@
 ///
 /// Gamma =  pi * R * V_inf
 static inline double Gamma(double radius, double vinf) {
-  return M_PI * radius * vinf;
+  // return M_PI * radius * vinf;
+  return 0;
 }
 
 /// Coefficient of Pressure of a cylinder.
@@ -55,23 +56,22 @@ ak_doubleArray *variedPanelsCp(const ak_Allocator *allocator,
   return Cp_lists;
 }
 
-// TODO: Save the thetas too.
-// TODO: Format .dat file as: Theta Cp
-void saveVariedCpArray(ak_doubleArray *arr, const char *filename,
-                       const size_t nmax) {
+double radToDeg(double radians) { return radians * (180.0 / M_PI); }
 
-  FILE *fid = fopen(filename, "w");
+void saveVariedCpArray(const ak_Allocator *allocator, ak_doubleArray *arr,
+                       const char *filename, const size_t nmax) {
+
+  FILE *fid = fopen(filename, "wb");
   if (!fid) {
     fprintf(stderr, "[ERROR] Unable to open file %s", filename);
   }
 
   for (size_t i = 0; i < nmax; i++) {
+    // Thetas
+    double *thetas = ak_linspace(allocator, 0, 2 * M_PI, i + 1);
+
     for (size_t j = 0; j < arr[i].len; j++) {
-      if (j == arr[i].len - 1) {
-        fprintf(fid, "%f", arr[i].arr[j]);
-      } else {
-        fprintf(fid, "%f,", arr[i].arr[j]);
-      }
+      fprintf(fid, "%f %f\n", radToDeg(thetas[j]), arr[i].arr[j]);
     }
     fprintf(fid, "\n");
   }
