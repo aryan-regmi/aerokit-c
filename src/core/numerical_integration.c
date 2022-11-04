@@ -1,6 +1,6 @@
 #include "numerical_integration.h"
 
-double sumd(size_t len, double *dlist) {
+static inline double sumd(size_t len, double *dlist) {
   double sum = 0;
   for (size_t i = 0; i < len; i++) {
     sum += dlist[i];
